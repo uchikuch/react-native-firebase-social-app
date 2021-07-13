@@ -1,19 +1,22 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 
-const OnboardingScreen = ({navigation}) => {
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
+const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Login Screen</Text>
+      <AntDesign name="user" size={25} color="#777" />
+      <Text style={{fontFamily: 'Kufam-SemiBoldItalic'}}>Login Screen</Text>
       <Button
-        title="click Here"
-        onPress={() => navigation.navigate('Onboarding')}
+        title="Click Here"
+        onPress={() => navigation.navigate('Signup')}
       />
     </View>
   );
 };
 
-export default OnboardingScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -5,10 +5,7 @@ const SignupScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>Signup Screen</Text>
-      <Button
-        title="click Here"
-        onPress={() => navigation.navigate('Signup')}
-      />
+      <Button title="click Here" onPress={() => navigation.navigate('Login')} />
     </View>
   );
 };
