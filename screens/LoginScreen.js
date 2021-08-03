@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -12,10 +12,13 @@ import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const {login} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -43,10 +46,12 @@ const LoginScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign In"
-        onPress={() => alert('Sign In Clicked!')}
+        onPress={() => login(email, password)}
       />
 
-      <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
+      <TouchableOpacity
+        style={styles.forgotButton}
+        onPress={() => navigation.navigate('Home')}>
         <Text style={styles.navButtonText}>Forgot Password</Text>
       </TouchableOpacity>
 

@@ -11,3 +11,5 @@ const AppStack = () => {
     </Stack.Navigator>
   );
 };
+
+export default AppStack;
