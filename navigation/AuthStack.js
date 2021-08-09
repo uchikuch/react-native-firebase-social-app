@@ -10,6 +10,7 @@ import SignupScreen from '../screens/SignupScreen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import {GoogleSignin} from '@react-native-community/google-signin';
 
 const Stack = createStackNavigator();
 
@@ -19,19 +20,28 @@ const AuthStack = () => {
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if (value == null) {
-        AsyncStorage.setItem('alreadyLaunched', 'true');
-        setIsFirstLaunch(true);
-      } else {
-        setIsFirstLaunch(false);
+      try {
+        if (value == null) {
+          AsyncStorage.setItem('alreadyLaunched', 'true');
+          setIsFirstLaunch(true);
+        } else {
+          setIsFirstLaunch(false);
+        }
+      } catch (e) {
+        console.log(e);
       }
+    });
+
+    GoogleSignin.configure({
+      webClientId:
+        '650912920132-me48o9a3uti6c8pgilc0gch8ugvt0frf.apps.googleusercontent.com',
     });
   }, []);
 
   if (isFirstLaunch == null) {
     return null;
   } else if (isFirstLaunch == true) {
-    return (routeName = 'Onboarding');
+    routeName = 'Onboarding';
   } else {
     routeName = 'Login';
   }

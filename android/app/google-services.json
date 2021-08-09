@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "650912920132-vdkkqn1gunaecqvp8u3s3h11i40aqco8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.socialappfirebase",
+            "certificate_hash": "47d77a1ba3b03e912e7e3d46b27b2c1a62964c87"
+          }
+        },
+        {
           "client_id": "650912920132-me48o9a3uti6c8pgilc0gch8ugvt0frf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -34,7 +42,7 @@
               "client_id": "650912920132-qnq5klh9sp955uotiih43ecbqpkr58vn.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.socialapp"
+                "bundle_id": "com.socialappfirebase"
               }
             }
           ]
