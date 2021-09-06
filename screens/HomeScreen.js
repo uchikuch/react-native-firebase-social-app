@@ -1,69 +1,77 @@
 import React from 'react';
+import {FlatList} from 'react-native';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import PostCard from '../components/PostCard';
 
-import {
-  Container,
-  Card,
-  UserInfo,
-  UserImg,
-  UserName,
-  UserInfoText,
-  PostTime,
-  PostText,
-  PostImg,
-  InteractionWrapper,
-  Interaction,
-  InteractionText,
-  Divider,
-} from '../styles/FeedStyles';
+import {Container} from '../styles/FeedStyles';
+
+const Posts = [
+  {
+    id: '1',
+    userName: 'General Maximus',
+    userImg: require('../assets/users/user-3.png'),
+    postTime: '4 mins ago',
+    post: 'Hey there, this is my test for a post of my social app in React Native.',
+    postImg: require('../assets/posts/post-1.jpg'),
+    liked: true,
+    likes: '14',
+    comments: '5',
+  },
+  {
+    id: '2',
+    userName: 'John Wick',
+    userImg: require('../assets/users/user-1.png'),
+    postTime: '2 hours ago',
+    post: 'Hey there, this is my test for a post of my social app in React Native.',
+    postImg: 'none',
+    liked: false,
+    likes: '8',
+    comments: '0',
+  },
+  {
+    id: '3',
+    userName: 'Ken William',
+    userImg: require('../assets/users/user-3.png'),
+    postTime: '1 hours ago',
+    post: 'Hey there, this is my test for a post of my social app in React Native.',
+    postImg: require('../assets/posts/post-2.jpg'),
+    liked: true,
+    likes: '1',
+    comments: '0',
+  },
+  {
+    id: '4',
+    userName: 'Selina Paul',
+    userImg: require('../assets/users/user-7.png'),
+    postTime: '1 day ago',
+    post: 'Hey there, this is my test for a post of my social app in React Native.',
+    postImg: require('../assets/posts/post-1.jpg'),
+    liked: true,
+    likes: '22',
+    comments: '4',
+  },
+  {
+    id: '5',
+    userName: 'Christy Alex',
+    userImg: require('../assets/users/user-8.jpg'),
+    postTime: '2 days ago',
+    post: 'Hey there, this is my test for a post of my social app in React Native.',
+    postImg: 'none',
+    liked: false,
+    likes: '0',
+    comments: '0',
+  },
+];
 
 const HomeScreen = () => {
   return (
     <Container>
-      <Card>
-        <UserInfo>
-          <UserImg source={require('../assets/users/user-2.png')} />
-          <UserInfoText>
-            <UserName>Jadon Sancho</UserName>
-            <PostTime>4 hours ago</PostTime>
-          </UserInfoText>
-        </UserInfo>
-        <PostText>Hello this is looking great</PostText>
-        <PostImg source={require('../assets/posts/post-1.jpg')} />
-        <InteractionWrapper>
-          <Interaction active>
-            <Ionicons name="heart" size={25} color="#2e64e5" />
-            <InteractionText active>7 Likes</InteractionText>
-          </Interaction>
-          <Interaction>
-            <Ionicons name="md-chatbubble-outline" size={25} />
-            <InteractionText>Comment</InteractionText>
-          </Interaction>
-        </InteractionWrapper>
-      </Card>
-      <Card>
-        <UserInfo>
-          <UserImg source={require('../assets/users/user-2.png')} />
-          <UserInfoText>
-            <UserName>Jadon Sancho</UserName>
-            <PostTime>4 hours ago</PostTime>
-          </UserInfoText>
-        </UserInfo>
-        <PostText>Hello this is looking great</PostText>
-        <Divider />
-        {/* <PostImg source={require('../assets/posts/post-1.jpg')} /> */}
-        <InteractionWrapper>
-          <Interaction>
-            <Ionicons name="heart-outline" size={25} />
-            <InteractionText>Like</InteractionText>
-          </Interaction>
-          <Interaction>
-            <Ionicons name="md-chatbubble-outline" size={25} />
-            <InteractionText>Comment</InteractionText>
-          </Interaction>
-        </InteractionWrapper>
-      </Card>
+      <FlatList
+        data={Posts}
+        renderItem={({item}) => <PostCard item={item} />}
+        keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
+      />
     </Container>
   );
 };

@@ -18,27 +18,51 @@ import {
   Divider,
 } from '../styles/FeedStyles';
 
-const PostCard = () => {
+const PostCard = ({item}) => {
+  const likeIcon = item.liked ? 'heart' : 'heart-outline';
+  const likeIconColor = item.liked ? '#2e64e5' : '#333';
+  let likeText = null;
+  let commentText = null;
+
+  if (item.likes == 1) {
+    likeText = '1 Like';
+  } else if (item.likes > 1) {
+    likeText = item.likes + ' Likes';
+  } else {
+    likeText = 'Like';
+  }
+
+  if (item.comments == 1) {
+    commentText = '1 Comment';
+  } else if (item.comments > 1) {
+    commentText = item.comments + ' Comments';
+  } else {
+    commentText = 'Comment';
+  }
+
   return (
     <Card>
       <UserInfo>
-        <UserImg source={require('../assets/users/user-2.png')} />
+        <UserImg source={item.userImg} />
         <UserInfoText>
-          <UserName>Jadon Sancho</UserName>
-          <PostTime>4 hours ago</PostTime>
+          <UserName>{item.userName}</UserName>
+          <PostTime>{item.postTime}</PostTime>
         </UserInfoText>
       </UserInfo>
-      <PostText>Hello this is looking great</PostText>
-      <Divider />
-      <PostImg source={require('../assets/posts/post-1.jpg')} />
+      <PostText>{item.post}</PostText>
+      {item.postImg !== 'none' ? (
+        <PostImg source={item.postImg} />
+      ) : (
+        <Divider />
+      )}
       <InteractionWrapper>
-        <Interaction>
-          <Ionicons name="heart-outline" size={25} />
-          <InteractionText>Like</InteractionText>
+        <Interaction active={item.liked}>
+          <Ionicons name={likeIcon} size={25} color={likeIconColor} />
+          <InteractionText active={item.liked}>{likeText}</InteractionText>
         </Interaction>
         <Interaction>
           <Ionicons name="md-chatbubble-outline" size={25} />
-          <InteractionText>Comment</InteractionText>
+          <InteractionText>{commentText}</InteractionText>
         </Interaction>
       </InteractionWrapper>
     </Card>
